@@ -107,4 +107,10 @@ InitTestScene*.unity*
 
 # Windows reserved device name -- cannot be indexed by git
 nul
+
+# IDE and editor settings (per-developer)
+.vscode/
+
+# Downloaded mockup reference images (available via GitHub release)
+mockups/
 **/nul
