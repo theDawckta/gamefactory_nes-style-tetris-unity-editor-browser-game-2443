@@ -24,6 +24,9 @@ public class StartScreenTests
     {
         if (_go != null)
             Object.Destroy(_go);
+        var leftover = Object.FindFirstObjectByType<LeaderboardService>(FindObjectsInactive.Include);
+        if (leftover != null)
+            Object.Destroy(leftover.gameObject);
     }
 
     [UnityTest]
@@ -73,5 +76,32 @@ public class StartScreenTests
         _screen.OnStartPressed += () => fired = true;
         _screen.OnStartPressed -= () => fired = true;
         Assert.IsFalse(fired);
+    }
+
+    [UnityTest]
+    public IEnumerator LeaderboardOffline_DoesNotBlockReturnToStart()
+    {
+        // Clear any lingering singleton from a previous test
+        var existing = Object.FindFirstObjectByType<LeaderboardService>(FindObjectsInactive.Include);
+        if (existing != null)
+            Object.Destroy(existing.gameObject);
+        yield return null;
+
+        // Create a LeaderboardService and wait for Awake to set Instance
+        var serviceGo = new GameObject("LeaderboardService");
+        serviceGo.AddComponent<LeaderboardService>();
+        yield return null;
+
+        Assert.IsNotNull(LeaderboardService.Instance);
+
+        // Deactivate it -- Instance remains non-null but isActiveAndEnabled is false
+        serviceGo.SetActive(false);
+        Assert.IsFalse(LeaderboardService.Instance.isActiveAndEnabled);
+
+        // Show() must not throw a coroutine error when the service is inactive
+        _screen.Show();
+        yield return null;
+
+        Assert.IsTrue(_screen.IsVisible);
     }
 }
