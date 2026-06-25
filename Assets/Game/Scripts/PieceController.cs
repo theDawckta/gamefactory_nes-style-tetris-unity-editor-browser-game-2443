@@ -32,6 +32,7 @@ public class PieceController : MonoBehaviour
     public bool IsLocked => _isLocked;
     public Vector2Int CurrentPivot => _pivot;
     public int CurrentRotation => _rotation;
+    public TetrominoData CurrentData => _data;
 
     public void SpawnPiece(TetrominoData data)
     {
