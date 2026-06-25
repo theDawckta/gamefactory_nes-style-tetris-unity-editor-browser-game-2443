@@ -45,6 +45,7 @@
 
 .next-piece-region {
     min-height: 120px;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .score-header {
