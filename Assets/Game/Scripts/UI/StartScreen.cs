@@ -5,6 +5,8 @@ using UnityEngine.UIElements;
 
 public class StartScreen : BaseScreen
 {
+    [SerializeField] private LeaderboardWidget _leaderboardWidget;
+
     public VisualElement LeaderboardRegion { get; private set; }
     public VisualElement PromptRegion { get; private set; }
 
@@ -30,6 +32,7 @@ public class StartScreen : BaseScreen
     protected override void OnShow()
     {
         _listening = true;
+        _leaderboardWidget?.SetLoading();
         if (LeaderboardService.Instance != null)
             LeaderboardService.Instance.FetchScores(OnScoresFetched);
     }
@@ -39,5 +42,8 @@ public class StartScreen : BaseScreen
         _listening = false;
     }
 
-    private void OnScoresFetched(LeaderboardEntry[] entries) { }
+    private void OnScoresFetched(LeaderboardEntry[] entries)
+    {
+        _leaderboardWidget?.SetScores(entries);
+    }
 }
