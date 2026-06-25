@@ -28,6 +28,7 @@ EditorSettings:
   m_PrefabModeAllowAutoSave: 1
   m_EnterPlayModeOptionsEnabled: 1
   m_EnterPlayModeOptions: 0
+  m_PlayModeStartScene: {fileID: 102900000, guid: 445c4f7213880b646ac9940aad3434b3, type: 2}
   m_GameObjectNamingDigits: 1
   m_GameObjectNamingScheme: 0
   m_AssetNamingUsesSpace: 1
