@@ -63,4 +63,13 @@ public class StartPromptWidgetTests
         yield return null;
         Assert.IsFalse(_widget.IsPromptLabelVisible);
     }
+
+    [UnityTest]
+    public IEnumerator StartPromptWidget_PromptLabelColorIsWhiteOnDarkBackground()
+    {
+        var region = new VisualElement();
+        _widget.InitializeWithRegion(region);
+        yield return null;
+        Assert.AreEqual(Color.white, _widget.PromptLabelColor);
+    }
 }

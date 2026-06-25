@@ -60,3 +60,17 @@
     font-size: 14px;
     -unity-text-align: upper-left;
 }
+
+.hud-header {
+    color: rgb(80, 60, 0);
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-text-align: upper-left;
+    margin-bottom: 4px;
+}
+
+.hud-value {
+    color: rgb(80, 60, 0);
+    font-size: 14px;
+    -unity-text-align: upper-left;
+}

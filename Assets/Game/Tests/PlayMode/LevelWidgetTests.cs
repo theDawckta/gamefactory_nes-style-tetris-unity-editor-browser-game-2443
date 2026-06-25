@@ -2,6 +2,7 @@ using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
+using UnityEngine.UIElements;
 
 public class LevelWidgetTests
 {
@@ -66,5 +67,26 @@ public class LevelWidgetTests
         _scoringSystem.AddLines(4);
         _scoringSystem.AddLines(4);
         Assert.AreEqual("2", _widget.LevelText);
+    }
+
+    [UnityTest]
+    public IEnumerator LevelWidget_HeaderLabelHasHudHeaderClass()
+    {
+        yield return null;
+        var region = new VisualElement();
+        _widget.InitializeWithRegion(region);
+        var header = region.Q<Label>(null, "hud-header");
+        Assert.IsNotNull(header);
+        Assert.AreEqual("LEVEL", header.text);
+    }
+
+    [UnityTest]
+    public IEnumerator LevelWidget_ValueLabelHasHudValueClass()
+    {
+        yield return null;
+        var region = new VisualElement();
+        _widget.InitializeWithRegion(region);
+        var valueLabel = region.Q<Label>(null, "hud-value");
+        Assert.IsNotNull(valueLabel);
     }
 }
