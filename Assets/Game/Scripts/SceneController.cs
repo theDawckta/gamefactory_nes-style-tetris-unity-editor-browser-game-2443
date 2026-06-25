@@ -13,6 +13,7 @@ public class SceneController : MonoBehaviour
     [SerializeField] private LinesWidget _linesWidget;
     [SerializeField] private PlayfieldRenderer _playfieldRenderer;
     [SerializeField] private PieceController _pieceController;
+    [SerializeField] private NextPieceWidget _nextPieceWidget;
 
     private void Start()
     {
@@ -27,6 +28,7 @@ public class SceneController : MonoBehaviour
         _startScreen.Show();
         _playfieldRenderer.gameObject.SetActive(false);
         _pieceController.gameObject.SetActive(false);
+        _nextPieceWidget.gameObject.SetActive(false);
     }
 
     private void WireWidgetScoringSystem()
@@ -48,6 +50,7 @@ public class SceneController : MonoBehaviour
         _startScreen.Hide();
         _playfieldRenderer.gameObject.SetActive(true);
         _pieceController.gameObject.SetActive(true);
+        _nextPieceWidget.gameObject.SetActive(true);
         _gameplayController.StartGame();
         _gameScreen.Show();
     }
@@ -56,6 +59,7 @@ public class SceneController : MonoBehaviour
     {
         _playfieldRenderer.gameObject.SetActive(false);
         _pieceController.gameObject.SetActive(false);
+        _nextPieceWidget.gameObject.SetActive(false);
         _gameScreen.Hide();
         int score = _gameplayController.Scoring.Score;
         _gameOverScreen.ShowWithScore(score);
@@ -77,6 +81,7 @@ public class SceneController : MonoBehaviour
         _startScreen.Hide();
         _playfieldRenderer.gameObject.SetActive(true);
         _pieceController.gameObject.SetActive(true);
+        _nextPieceWidget.gameObject.SetActive(true);
         _gameplayController.StartGame();
         _gameScreen.Show();
     }
@@ -90,6 +95,7 @@ public class SceneController : MonoBehaviour
     {
         _playfieldRenderer.gameObject.SetActive(false);
         _pieceController.gameObject.SetActive(false);
+        _nextPieceWidget.gameObject.SetActive(false);
         _gameScreen.Hide();
         _gameOverScreen.Hide();
         _startScreen.Show();

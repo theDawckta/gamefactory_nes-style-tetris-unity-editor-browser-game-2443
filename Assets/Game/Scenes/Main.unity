@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Game.Scripts::NextPieceWidget
   GameplayController: {fileID: 770997602}
+  GameScreen: {fileID: 802281945}
   BlockSprite: {fileID: 21300000, guid: e7b5f2b96ad24d34a1a8b0fb0606db29, type: 3}
 --- !u!1 &352700317
 GameObject:
@@ -1057,6 +1058,7 @@ MonoBehaviour:
   _linesWidget: {fileID: 851157157}
   _playfieldRenderer: {fileID: 1532594374}
   _pieceController: {fileID: 1018748450}
+  _nextPieceWidget: {fileID: 342408187}
 --- !u!4 &1522536730
 Transform:
   m_ObjectHideFlags: 0
