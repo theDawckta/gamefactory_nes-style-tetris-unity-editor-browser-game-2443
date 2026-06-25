@@ -8,7 +8,7 @@ public class GameScreen : BaseScreen
     public VisualElement LinesRegion { get; private set; }
     public VisualElement NextPieceRegion { get; private set; }
 
-    private void Start()
+    private void OnEnable()
     {
         var root = Document.rootVisualElement;
         if (root == null)
