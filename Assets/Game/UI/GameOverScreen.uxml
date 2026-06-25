@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="GameOverScreen.uss" />
+    <ui:VisualElement name="gameOverRoot" class="game-over-root">
+        <ui:VisualElement name="gameOverTitleRegion" class="game-over-region game-over-title-region" />
+        <ui:VisualElement name="finalScoreRegion" class="game-over-region final-score-region" />
+        <ui:VisualElement name="initialsRegion" class="game-over-region initials-region" />
+        <ui:VisualElement name="returnPromptRegion" class="game-over-region return-prompt-region" />
+    </ui:VisualElement>
+</ui:UXML>
