@@ -72,4 +72,19 @@ public class GameOverScreenTests
         _screen.ShowReturnPrompt();
         Assert.IsTrue(_screen.ReturnPromptVisible);
     }
+
+    [UnityTest]
+    public IEnumerator GameOverScreen_FinalScoreRegionNullWithoutUxml()
+    {
+        yield return null;
+        Assert.IsNull(_screen.FinalScoreRegion);
+    }
+
+    [UnityTest]
+    public IEnumerator GameOverScreen_ShowWithScoreSetsIsVisibleTrue()
+    {
+        yield return null;
+        _screen.ShowWithScore(12345);
+        Assert.IsTrue(_screen.IsVisible);
+    }
 }

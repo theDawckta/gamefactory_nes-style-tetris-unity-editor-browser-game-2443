@@ -3,6 +3,9 @@ using UnityEngine.UIElements;
 
 public class GameOverScreen : BaseScreen
 {
+    [SerializeField] private FinalScoreWidget _finalScoreWidget;
+
+    public VisualElement FinalScoreRegion { get; private set; }
     public VisualElement InitialsRegion { get; private set; }
     public VisualElement ReturnPromptRegion { get; private set; }
     public bool ReturnPromptVisible { get; private set; }
@@ -11,8 +14,15 @@ public class GameOverScreen : BaseScreen
     {
         var root = Document.rootVisualElement;
         if (root == null) return;
+        FinalScoreRegion = root.Q("finalScoreRegion");
         InitialsRegion = root.Q("initialsRegion");
         ReturnPromptRegion = root.Q("returnPromptRegion");
+    }
+
+    public void ShowWithScore(int score)
+    {
+        Show();
+        _finalScoreWidget?.SetScore(score);
     }
 
     public void ShowReturnPrompt()
