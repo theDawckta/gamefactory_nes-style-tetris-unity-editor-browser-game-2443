@@ -23,11 +23,22 @@ public class GameOverScreen : BaseScreen
     {
         Show();
         _finalScoreWidget?.SetScore(score);
+
+        bool isTopFive = LeaderboardService.Instance != null
+            ? LeaderboardService.Instance.IsTopFive(score)
+            : true;
+
+        if (InitialsRegion != null)
+            InitialsRegion.style.display = isTopFive ? DisplayStyle.Flex : DisplayStyle.None;
+        if (ReturnPromptRegion != null)
+            ReturnPromptRegion.style.display = isTopFive ? DisplayStyle.None : DisplayStyle.Flex;
     }
 
     public void ShowReturnPrompt()
     {
         ReturnPromptVisible = true;
+        if (InitialsRegion != null)
+            InitialsRegion.style.display = DisplayStyle.None;
         if (ReturnPromptRegion != null)
             ReturnPromptRegion.style.display = DisplayStyle.Flex;
     }
