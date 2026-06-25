@@ -202,4 +202,57 @@ public class SceneControllerTests
         Assert.IsNotNull(piece);
         Assert.IsFalse(piece.gameObject.activeSelf);
     }
+
+    [UnityTest]
+    public IEnumerator SceneController_InitialState_NextPieceWidgetInactive()
+    {
+        SceneManager.LoadScene("Main");
+        yield return null;
+        var widget = Object.FindAnyObjectByType<NextPieceWidget>(FindObjectsInactive.Include);
+        Assert.IsNotNull(widget);
+        Assert.IsFalse(widget.gameObject.activeSelf);
+    }
+
+    [UnityTest]
+    public IEnumerator SceneController_StartGame_NextPieceWidgetActive()
+    {
+        SceneManager.LoadScene("Main");
+        yield return null;
+        var sc = Object.FindAnyObjectByType<SceneController>();
+        sc.StartGame();
+        yield return null;
+        var widget = Object.FindAnyObjectByType<NextPieceWidget>();
+        Assert.IsNotNull(widget);
+        Assert.IsTrue(widget.gameObject.activeSelf);
+    }
+
+    [UnityTest]
+    public IEnumerator SceneController_GoToGameOver_NextPieceWidgetInactive()
+    {
+        SceneManager.LoadScene("Main");
+        yield return null;
+        var sc = Object.FindAnyObjectByType<SceneController>();
+        sc.StartGame();
+        yield return null;
+        sc.GoToGameOver();
+        yield return null;
+        var widget = Object.FindAnyObjectByType<NextPieceWidget>(FindObjectsInactive.Include);
+        Assert.IsNotNull(widget);
+        Assert.IsFalse(widget.gameObject.activeSelf);
+    }
+
+    [UnityTest]
+    public IEnumerator SceneController_GoToStart_NextPieceWidgetInactive()
+    {
+        SceneManager.LoadScene("Main");
+        yield return null;
+        var sc = Object.FindAnyObjectByType<SceneController>();
+        sc.StartGame();
+        yield return null;
+        sc.GoToStart();
+        yield return null;
+        var widget = Object.FindAnyObjectByType<NextPieceWidget>(FindObjectsInactive.Include);
+        Assert.IsNotNull(widget);
+        Assert.IsFalse(widget.gameObject.activeSelf);
+    }
 }

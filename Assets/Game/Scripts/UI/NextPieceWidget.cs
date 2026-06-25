@@ -7,6 +7,7 @@ public class NextPieceWidget : MonoBehaviour
     private const int GridSize = 4;
 
     public GameplayController GameplayController;
+    public GameScreen GameScreen;
     public Sprite BlockSprite;
 
     private static readonly Color[] ColorMap =
@@ -57,6 +58,34 @@ public class NextPieceWidget : MonoBehaviour
     {
         if (GameplayController != null)
             GameplayController.OnNextPieceChanged -= HandleNextPieceChanged;
+    }
+
+    private void LateUpdate()
+    {
+        AlignToNextPieceRegion();
+    }
+
+    private void AlignToNextPieceRegion()
+    {
+        if (GameScreen == null || GameScreen.NextPieceRegion == null || Camera.main == null)
+            return;
+
+        var regionBound = GameScreen.NextPieceRegion.worldBound;
+        if (regionBound.width <= 0f || regionBound.height <= 0f) return;
+
+        var panelRoot = GameScreen.NextPieceRegion.panel?.visualTree;
+        if (panelRoot == null) return;
+        var panelBound = panelRoot.worldBound;
+        if (panelBound.width <= 0f || panelBound.height <= 0f) return;
+
+        float normalizedX = regionBound.center.x / panelBound.width;
+        float normalizedY = regionBound.center.y / panelBound.height;
+        float screenX = normalizedX * Screen.width;
+        float screenY = (1f - normalizedY) * Screen.height;
+
+        float depth = -Camera.main.transform.position.z;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(screenX, screenY, depth));
+        transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
     }
 
     private void HandleNextPieceChanged(TetrominoData data)

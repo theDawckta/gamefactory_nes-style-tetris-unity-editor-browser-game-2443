@@ -176,4 +176,23 @@ public class NextPieceWidgetTests
         }
         Assert.AreEqual(4, opaque, "Widget should respond to events after re-enable");
     }
+
+    [UnityTest]
+    public IEnumerator NextPieceWidget_NullGameScreen_LateUpdateDoesNotThrow()
+    {
+        // GameScreen is null (not wired) -- LateUpdate must not throw
+        _widget.GameScreen = null;
+        yield return null; // triggers LateUpdate
+        // If we reach here, no exception was thrown
+        Assert.IsNull(_widget.GameScreen);
+    }
+
+    [UnityTest]
+    public IEnumerator NextPieceWidget_HasGameScreenField()
+    {
+        yield return null;
+        // Verify the field exists and is accessible (set it to null and read it back)
+        _widget.GameScreen = null;
+        Assert.IsNull(_widget.GameScreen);
+    }
 }
