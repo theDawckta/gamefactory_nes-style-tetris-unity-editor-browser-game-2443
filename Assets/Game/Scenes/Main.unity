@@ -1055,6 +1055,8 @@ MonoBehaviour:
   _scoreWidget: {fileID: 730666127}
   _levelWidget: {fileID: 1906283385}
   _linesWidget: {fileID: 851157157}
+  _playfieldRenderer: {fileID: 1532594374}
+  _pieceController: {fileID: 1018748450}
 --- !u!4 &1522536730
 Transform:
   m_ObjectHideFlags: 0
