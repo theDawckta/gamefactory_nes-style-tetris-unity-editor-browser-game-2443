@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -8,6 +9,8 @@ public class BaseScreen : MonoBehaviour
 
     protected UIDocument Document => _document;
     public bool IsVisible => _isVisible;
+
+    public event Action OnShown;
 
     protected virtual void Awake()
     {
@@ -21,6 +24,7 @@ public class BaseScreen : MonoBehaviour
         _document.rootVisualElement.style.display = DisplayStyle.Flex;
         _isVisible = true;
         OnShow();
+        OnShown?.Invoke();
     }
 
     public virtual void Hide()

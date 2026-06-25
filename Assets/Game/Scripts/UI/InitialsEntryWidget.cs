@@ -19,6 +19,9 @@ public class InitialsEntryWidget : MonoBehaviour
     private Label[] _cursorLabels;
     private Label _confirmLabel;
 
+    public event Action OnCharCycled;
+    public event Action OnSlotConfirmed;
+
     private void Start()
     {
         BuildUI();
@@ -104,6 +107,7 @@ public class InitialsEntryWidget : MonoBehaviour
     {
         _slotIndices[_cursorSlot] = (_slotIndices[_cursorSlot] + dir + ValidChars.Length) % ValidChars.Length;
         RefreshSlotLabel(_cursorSlot);
+        OnCharCycled?.Invoke();
     }
 
     internal void ConfirmSlot()
@@ -119,6 +123,7 @@ public class InitialsEntryWidget : MonoBehaviour
             RefreshCursor();
             ShowConfirmPrompt();
         }
+        OnSlotConfirmed?.Invoke();
     }
 
     internal void GoBack()
