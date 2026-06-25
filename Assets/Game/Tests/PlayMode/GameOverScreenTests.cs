@@ -72,4 +72,20 @@ public class GameOverScreenTests
         _screen.ShowReturnPrompt();
         Assert.IsTrue(_screen.ReturnPromptVisible);
     }
+
+    [UnityTest]
+    public IEnumerator GameOverScreen_ShowWithScore_SetsIsVisible()
+    {
+        yield return null;
+        Assert.IsFalse(_screen.IsVisible);
+        _screen.ShowWithScore(12345);
+        Assert.IsTrue(_screen.IsVisible);
+    }
+
+    [UnityTest]
+    public IEnumerator GameOverScreen_ShowWithScore_DoesNotThrowWithoutUxml()
+    {
+        yield return null;
+        Assert.DoesNotThrow(() => _screen.ShowWithScore(999));
+    }
 }

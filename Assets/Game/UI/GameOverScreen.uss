@@ -1,0 +1,72 @@
+.game-over-root {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.game-over-panel {
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    padding: 32px;
+}
+
+.game-over-label {
+    background-color: rgb(220, 220, 220);
+    border-color: rgb(180, 180, 180);
+    border-width: 2px;
+    border-radius: 8px;
+    color: rgb(30, 30, 30);
+    font-size: 48px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    width: 80%;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.final-score-region {
+    background-color: rgb(255, 253, 231);
+    border-color: rgb(249, 168, 37);
+    border-width: 2px;
+    border-radius: 8px;
+    width: 80%;
+    min-height: 60px;
+    margin-bottom: 16px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.final-score-label {
+    color: rgb(30, 30, 30);
+    font-size: 28px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+}
+
+.initials-region {
+    background-color: rgb(227, 242, 253);
+    border-color: rgb(33, 150, 243);
+    border-width: 2px;
+    border-radius: 8px;
+    width: 90%;
+    min-height: 80px;
+    margin-bottom: 16px;
+    padding: 8px;
+}
+
+.return-prompt-region {
+    background-color: rgb(232, 245, 233);
+    border-color: rgb(76, 175, 80);
+    border-width: 2px;
+    border-radius: 8px;
+    width: 80%;
+    min-height: 60px;
+    padding: 8px;
+}
