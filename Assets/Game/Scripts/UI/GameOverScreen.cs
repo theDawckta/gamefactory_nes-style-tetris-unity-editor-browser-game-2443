@@ -10,7 +10,7 @@ public class GameOverScreen : BaseScreen
     public VisualElement ReturnPromptRegion { get; private set; }
     public bool ReturnPromptVisible { get; private set; }
 
-    private void Start()
+    private void OnEnable()
     {
         var root = Document.rootVisualElement;
         if (root == null) return;

@@ -74,4 +74,26 @@ public class FinalScoreWidgetTests
         yield return null;
         Assert.DoesNotThrow(() => _widget.SetScore(999));
     }
+
+    [UnityTest]
+    public IEnumerator FinalScoreWidget_HeaderHasFinalScoreHeaderClass()
+    {
+        var region = new VisualElement();
+        _widget.InitializeWithRegion(region);
+        yield return null;
+        var header = region.Q<Label>(null, "final-score-header");
+        Assert.IsNotNull(header);
+        Assert.AreEqual("SCORE", header.text);
+    }
+
+    [UnityTest]
+    public IEnumerator FinalScoreWidget_ValueHasFinalScoreValueClass()
+    {
+        var region = new VisualElement();
+        _widget.InitializeWithRegion(region);
+        yield return null;
+        var value = region.Q<Label>(null, "final-score-value");
+        Assert.IsNotNull(value);
+        Assert.AreEqual("0000000", value.text);
+    }
 }

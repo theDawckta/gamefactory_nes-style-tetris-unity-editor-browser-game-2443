@@ -14,7 +14,7 @@ public class StartScreen : BaseScreen
 
     private bool _listening;
 
-    private void Start()
+    private void OnEnable()
     {
         var root = Document.rootVisualElement;
         if (root == null) return;
