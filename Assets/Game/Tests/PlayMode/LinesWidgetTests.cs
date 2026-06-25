@@ -85,4 +85,25 @@ public class LinesWidgetTests
         Assert.IsNotNull(_widget);
         Assert.AreEqual("0", _widget.LinesText);
     }
+
+    [UnityTest]
+    public IEnumerator LinesWidget_HeaderLabelHasHudHeaderClass()
+    {
+        yield return null;
+        var region = new VisualElement();
+        _widget.SetRegion(region);
+        var header = region.Q<Label>(null, "hud-header");
+        Assert.IsNotNull(header);
+        Assert.AreEqual("LINES", header.text);
+    }
+
+    [UnityTest]
+    public IEnumerator LinesWidget_ValueLabelHasHudValueClass()
+    {
+        yield return null;
+        var region = new VisualElement();
+        _widget.SetRegion(region);
+        var valueLabel = region.Q<Label>(null, "hud-value");
+        Assert.IsNotNull(valueLabel);
+    }
 }

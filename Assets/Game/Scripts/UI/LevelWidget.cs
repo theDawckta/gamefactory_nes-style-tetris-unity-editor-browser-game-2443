@@ -21,6 +21,12 @@ public class LevelWidget : MonoBehaviour
     {
         if (_gameScreen == null || _gameScreen.LevelRegion == null)
             return;
+        InitializeWithRegion(_gameScreen.LevelRegion);
+    }
+
+    internal void InitializeWithRegion(VisualElement region)
+    {
+        if (region == null) return;
 
         var header = new Label("LEVEL");
         header.AddToClassList("hud-header");
@@ -28,9 +34,9 @@ public class LevelWidget : MonoBehaviour
         _valueLabel = new Label(LevelText);
         _valueLabel.AddToClassList("hud-value");
 
-        _gameScreen.LevelRegion.Clear();
-        _gameScreen.LevelRegion.Add(header);
-        _gameScreen.LevelRegion.Add(_valueLabel);
+        region.Clear();
+        region.Add(header);
+        region.Add(_valueLabel);
     }
 
     private void OnEnable()

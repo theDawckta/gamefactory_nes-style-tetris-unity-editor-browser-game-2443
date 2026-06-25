@@ -11,6 +11,11 @@ public class StartPromptWidget : MonoBehaviour
     private void Start()
     {
         var region = _startScreen != null ? _startScreen.PromptRegion : null;
+        InitializeWithRegion(region);
+    }
+
+    internal void InitializeWithRegion(VisualElement region)
+    {
         if (region == null) return;
 
         region.Clear();
@@ -20,11 +25,13 @@ public class StartPromptWidget : MonoBehaviour
 
         _promptLabel = new Label("PRESS ENTER TO START");
         _promptLabel.style.fontSize = 20;
-        _promptLabel.style.color = new StyleColor(new Color(0.1f, 0.1f, 0.1f));
+        _promptLabel.style.color = new StyleColor(Color.white);
         _promptLabel.style.unityTextAlign = TextAnchor.MiddleCenter;
         _promptLabel.style.display = DisplayStyle.None;
         region.Add(_promptLabel);
     }
+
+    internal Color PromptLabelColor => _promptLabel != null ? _promptLabel.style.color.value : Color.clear;
 
     private void Update()
     {
