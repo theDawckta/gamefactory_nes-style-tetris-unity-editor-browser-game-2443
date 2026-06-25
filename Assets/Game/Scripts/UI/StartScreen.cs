@@ -33,7 +33,7 @@ public class StartScreen : BaseScreen
     {
         _listening = true;
         _leaderboardWidget?.SetLoading();
-        if (LeaderboardService.Instance != null)
+        if (LeaderboardService.Instance != null && LeaderboardService.Instance.isActiveAndEnabled)
             LeaderboardService.Instance.FetchScores(OnScoresFetched);
     }
 
