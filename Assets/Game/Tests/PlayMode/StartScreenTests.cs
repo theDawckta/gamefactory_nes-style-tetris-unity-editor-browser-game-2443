@@ -24,7 +24,8 @@ public class StartScreenTests
     {
         if (_go != null)
             Object.Destroy(_go);
-        var leftover = Object.FindFirstObjectByType<LeaderboardService>(FindObjectsInactive.Include);
+        var leftoverAll = Object.FindObjectsByType<LeaderboardService>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var leftover = leftoverAll.Length > 0 ? leftoverAll[0] : null;
         if (leftover != null)
             Object.Destroy(leftover.gameObject);
     }
@@ -82,7 +83,8 @@ public class StartScreenTests
     public IEnumerator LeaderboardOffline_DoesNotBlockReturnToStart()
     {
         // Clear any lingering singleton from a previous test
-        var existing = Object.FindFirstObjectByType<LeaderboardService>(FindObjectsInactive.Include);
+        var existingAll = Object.FindObjectsByType<LeaderboardService>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        var existing = existingAll.Length > 0 ? existingAll[0] : null;
         if (existing != null)
             Object.Destroy(existing.gameObject);
         yield return null;
