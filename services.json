@@ -1,0 +1,8 @@
+[
+  {
+    "name": "leaderboard",
+    "source": "server",
+    "configKey": "leaderboardUrl",
+    "kvBindings": ["SCORES"]
+  }
+]

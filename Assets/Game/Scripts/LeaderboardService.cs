@@ -15,7 +15,7 @@ public struct LeaderboardEntry
 
 public class LeaderboardService : MonoBehaviour
 {
-    private const string BaseUrl = "http://localhost:3000";
+    private string _baseUrl = "http://localhost:3000";
 
     public static LeaderboardService Instance { get; private set; }
 
@@ -30,6 +30,13 @@ public class LeaderboardService : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private IEnumerator Start()
+    {
+        yield return ConfigService.Instance.EnsureLoaded();
+        var url = ConfigService.Instance.Get("leaderboardUrl");
+        if (!string.IsNullOrEmpty(url)) _baseUrl = url;
     }
 
     public void FetchScores(Action<LeaderboardEntry[]> onComplete)
@@ -111,18 +118,17 @@ public class LeaderboardService : MonoBehaviour
 
     private static LeaderboardEntry[] ParseEntries(string json)
     {
-        var wrapped = "{\"entries\":" + json + "}";
-        var wrapper = JsonUtility.FromJson<LeaderboardResponseWrapper>(wrapped);
-        if (wrapper?.entries == null)
+        var wrapper = JsonUtility.FromJson<LeaderboardResponseWrapper>(json);
+        if (wrapper?.scores == null)
             return null;
 
-        var result = new LeaderboardEntry[wrapper.entries.Length];
-        for (int i = 0; i < wrapper.entries.Length; i++)
+        var result = new LeaderboardEntry[wrapper.scores.Length];
+        for (int i = 0; i < wrapper.scores.Length; i++)
         {
             result[i] = new LeaderboardEntry
             {
-                Initials = wrapper.entries[i].initials,
-                Score = wrapper.entries[i].score
+                Initials = wrapper.scores[i].initials,
+                Score = wrapper.scores[i].score
             };
         }
         return result;
@@ -131,7 +137,7 @@ public class LeaderboardService : MonoBehaviour
     [Serializable]
     private class LeaderboardResponseWrapper
     {
-        public LeaderboardEntryJson[] entries;
+        public LeaderboardEntryJson[] scores;
     }
 
     [Serializable]

@@ -1,0 +1,8 @@
+name = "gamefactory-nes-tetris-unity-2443-leaderboard"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+[[kv_namespaces]]
+binding = "SCORES"
+id = "placeholder"
+preview_id = "placeholder"
