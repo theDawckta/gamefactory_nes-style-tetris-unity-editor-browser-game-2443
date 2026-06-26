@@ -71,7 +71,7 @@ public class LeaderboardService : MonoBehaviour
 
     private IEnumerator FetchScoresCoroutine(Action<LeaderboardEntry[]> onComplete)
     {
-        using (var request = UnityWebRequest.Get(BaseUrl + "/leaderboard"))
+        using (var request = UnityWebRequest.Get(_baseUrl + "/leaderboard"))
         {
             yield return request.SendWebRequest();
 
@@ -94,7 +94,7 @@ public class LeaderboardService : MonoBehaviour
         var body = "{\"initials\":\"" + initials + "\",\"score\":" + score + "}";
         var bodyBytes = System.Text.Encoding.UTF8.GetBytes(body);
 
-        using (var request = new UnityWebRequest(BaseUrl + "/leaderboard", "POST"))
+        using (var request = new UnityWebRequest(_baseUrl + "/leaderboard", "POST"))
         {
             request.uploadHandler = new UploadHandlerRaw(bodyBytes);
             request.downloadHandler = new DownloadHandlerBuffer();
