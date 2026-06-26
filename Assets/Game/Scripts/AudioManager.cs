@@ -5,6 +5,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    [SerializeField] private float _musicVolume = 0.5f;
+    [SerializeField] private float _sfxVolume = 0.4f;
+
     private AudioSource _musicSource;
     private AudioSource _sfxSource;
 
@@ -26,8 +29,10 @@ public class AudioManager : MonoBehaviour
 
         _musicSource = gameObject.AddComponent<AudioSource>();
         _musicSource.loop = true;
+        _musicSource.volume = _musicVolume;
         _sfxSource = gameObject.AddComponent<AudioSource>();
         _sfxSource.loop = false;
+        _sfxSource.volume = _sfxVolume;
     }
 
     private void Start()
