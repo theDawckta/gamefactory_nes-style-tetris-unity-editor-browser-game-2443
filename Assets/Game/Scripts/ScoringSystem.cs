@@ -17,7 +17,7 @@ public class ScoringSystem
 
         Score += ScoreTable[linesCleared] * (Level + 1);
         TotalLines += linesCleared;
-        Level = TotalLines / 10;
+        Level = TotalLines / 4;
 
         OnStatsChanged?.Invoke(Score, Level, TotalLines);
     }

@@ -6,7 +6,7 @@ public class PieceController : MonoBehaviour
 {
     private static readonly float[] GravityIntervals =
     {
-        0.800f, 0.717f, 0.633f, 0.550f, 0.467f, 0.383f, 0.300f, 0.217f, 0.133f, 0.100f
+        0.800f, 0.550f, 0.383f, 0.267f, 0.183f, 0.133f, 0.100f, 0.075f, 0.050f, 0.033f
     };
 
     private const float DasInitialDelay = 16f / 60f;
