@@ -15,7 +15,7 @@ public struct LeaderboardEntry
 
 public class LeaderboardService : MonoBehaviour
 {
-    private string _baseUrl = "http://localhost:3000";
+    private string _baseUrl = ""; // populated by ConfigService at runtime; empty = no requests
 
     public static LeaderboardService Instance { get; private set; }
 
@@ -71,6 +71,7 @@ public class LeaderboardService : MonoBehaviour
 
     private IEnumerator FetchScoresCoroutine(Action<LeaderboardEntry[]> onComplete)
     {
+        if (string.IsNullOrEmpty(_baseUrl)) { onComplete?.Invoke(_cachedScores); yield break; }
         using (var request = UnityWebRequest.Get(_baseUrl + "/leaderboard"))
         {
             yield return request.SendWebRequest();
@@ -91,6 +92,7 @@ public class LeaderboardService : MonoBehaviour
 
     private IEnumerator SubmitScoreCoroutine(string initials, int score, Action<LeaderboardEntry[]> onComplete)
     {
+        if (string.IsNullOrEmpty(_baseUrl)) { onComplete?.Invoke(_cachedScores); yield break; }
         var body = "{\"initials\":\"" + initials + "\",\"score\":" + score + "}";
         var bodyBytes = System.Text.Encoding.UTF8.GetBytes(body);
 
