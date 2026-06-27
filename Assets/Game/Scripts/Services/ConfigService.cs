@@ -29,7 +29,13 @@ public class ConfigService : MonoBehaviour
     public IEnumerator EnsureLoaded()
     {
         if (_loaded) yield break;
-        using var req = UnityWebRequest.Get("config.json");
+        // In WebGL, relative URLs in UnityWebRequest are not resolved against the page URL.
+        // Build an absolute URL from Application.absoluteURL so config.json is always found.
+        var pageUrl = Application.absoluteURL;
+        var baseUrl = string.IsNullOrEmpty(pageUrl)
+            ? ""
+            : pageUrl.Substring(0, pageUrl.LastIndexOf('/') + 1);
+        using var req = UnityWebRequest.Get(baseUrl + "config.json");
         req.timeout = 3;
         yield return req.SendWebRequest();
         if (req.result == UnityWebRequest.Result.Success)
