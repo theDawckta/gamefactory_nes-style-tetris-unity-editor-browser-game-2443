@@ -43,7 +43,7 @@ public class ConfigService : MonoBehaviour
             var text = req.downloadHandler.text.Trim('{', '}', ' ', '\n');
             foreach (var pair in text.Split(','))
             {
-                var kv = pair.Split(':');
+                var kv = pair.Split(new char[] { ':' }, 2);
                 if (kv.Length == 2)
                     _values[kv[0].Trim('"', ' ')] = kv[1].Trim('"', ' ');
             }
