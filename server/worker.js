@@ -2,7 +2,8 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const cors = { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' };
-    if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
+    const preflightCors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type' };
+    if (request.method === 'OPTIONS') return new Response(null, { headers: preflightCors });
 
     if (url.pathname === '/leaderboard' && request.method === 'GET') {
       const scores = JSON.parse(await env.SCORES.get('scores') || '[]');
