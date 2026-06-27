@@ -22,7 +22,10 @@ public class InitialsEntryWidget : MonoBehaviour
     public event Action OnCharCycled;
     public event Action OnSlotConfirmed;
 
-    private bool _uiBuilt;
+    private void Start()
+    {
+        BuildUI();
+    }
 
     private void BuildUI()
     {
@@ -197,7 +200,6 @@ public class InitialsEntryWidget : MonoBehaviour
 
     public void Activate(int score)
     {
-        if (!_uiBuilt) { BuildUI(); _uiBuilt = true; }
         _score = score;
         _slotIndices[0] = _slotIndices[1] = _slotIndices[2] = 0;
         _cursorSlot = 0;

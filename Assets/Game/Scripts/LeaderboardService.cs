@@ -51,14 +51,8 @@ public class LeaderboardService : MonoBehaviour
 
     public bool IsTopFive(int score)
     {
-        if (_cachedScores == null || _cachedScores.Length == 0)
+        if (_cachedScores == null || _cachedScores.Length < 5)
             return true;
-
-        foreach (var entry in _cachedScores)
-        {
-            if (entry.Initials == "---")
-                return true;
-        }
 
         int lowest = _cachedScores[_cachedScores.Length - 1].Score;
         return score > lowest;

@@ -28,10 +28,15 @@ public class GameOverScreen : BaseScreen
             ? LeaderboardService.Instance.IsTopFive(score)
             : true;
 
-        if (InitialsRegion != null)
-            InitialsRegion.style.display = isTopFive ? DisplayStyle.Flex : DisplayStyle.None;
-        if (ReturnPromptRegion != null)
-            ReturnPromptRegion.style.display = isTopFive ? DisplayStyle.None : DisplayStyle.Flex;
+        if (isTopFive)
+        {
+            if (InitialsRegion != null) InitialsRegion.style.display = DisplayStyle.Flex;
+            if (ReturnPromptRegion != null) ReturnPromptRegion.style.display = DisplayStyle.None;
+        }
+        else
+        {
+            ShowReturnPrompt();
+        }
     }
 
     public void ShowReturnPrompt()
